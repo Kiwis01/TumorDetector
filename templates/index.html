@@ -3,27 +3,30 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Tumor Detector</title>
+        <meta name="color-scheme" content="light dark" />
         <link rel="stylesheet" href="./static/style.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.cyan.min.css">
+        <title>Tumor Detector</title>
     </head>
     <body>
-        <h1>Tumor detector</h1>
-        <div class="description">
-            <p class="default">Please choose a mp4 image of an mri scan to predict a possible tumor</p>
-            <p class="default">Currently it has been trained to detect three tumors: glioma, meningioma, and pituitary</p>
+        <main class="container">
+            <h1>Tumor detector</h1>
+        </main>
+        <main class="container">
+            <p>Please choose a mp4 image of an mri scan to predict a possible tumor</p>
+            <p>Currently it has been trained to detect three tumors: glioma, meningioma, and pituitary</p>
+        <hr />
             <form action="/" method="post" enctype="multipart/form-data">
                 <input type="file" name="file" class="choose-file" required>
-                <button type="submit" value="Submit">Upload</button>
+                <button type="submit" value="Submit">Predict</button>
             </form> 
-        </div>
-        <div class="images">
-            {% if filename %}
-                <h2>Uploaded Image</h2>
-                <img id="uploaded-image" src="{{url_for('display_image', filename=filename)}}" alt="Uploaded Image">
-            {% endif %}
+        </main>
+        <main class="container">
             {% if predicted %}
-                <img id="predicted-image" src="{{predicted}}" alt="Predicted Image">
+                <article>
+                    <h2>Predicted Image</h2>
+                    <img src="{{ url_for('static', filename=predicted) }}" alt="Prediction Result">
+                </article>
             {% endif %}
-        </div>
-
+        </main>
     </body>
