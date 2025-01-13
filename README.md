@@ -1,7 +1,7 @@
 ﻿# TumorDetector
 
-This application is running on Flask and Python --version = Python 3.12.7
-(There should not be compatibility issues)
+This application is running on Flask and Python --version = Python 3.9.13
+(There may be compatibility issues, any Python version 3.9 should work)
 
 ![PredictionVid](https://github.com/user-attachments/assets/cc400b55-7427-4120-9362-f2cb5395cb14)
 
