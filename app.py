@@ -6,12 +6,14 @@ from PIL import Image
 import os
 import subprocess
 import glob
+import shutil
 
 app = Flask(__name__)
 
 # Check if the folder exists
 if not os.path.exists("./yolov5"):
     result = subprocess.run(["git", "clone", "https://github.com/ultralytics/yolov5"], capture_output=True, text=True)
+    shutil.copy("./model/detect.py", "./yolov5/")
     print(result.stdout)  # Print the output for debugging
 
 # App utils
@@ -61,7 +63,7 @@ def prediction(filepath):
     # yolov5 detect.py call
     command = [
         "python", "./yolov5/detect.py",
-        "--weights", "./yolov5/runs/train/exp3/weights/best.pt",
+        "--weights", "./model/last.pt",
         "--img", "640",
         "--conf", "0.60",
         "--source", filepath,
