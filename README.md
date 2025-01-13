@@ -2,9 +2,7 @@
 
 This application is running on Flask and Python --version = Python 3.12.7
 (There should not be compatibility issues)
-
-# Example 
-![PredictionVid](https://github.com/user-attachments/assets/618178fe-de7a-4c66-a396-3dfed8b07d22)
+![PredictionVid](https://github.com/user-attachments/assets/cc400b55-7427-4120-9362-f2cb5395cb14)
 
 # Setup
 Please make sure to install the required dependencies 
