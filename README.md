@@ -1,4 +1,4 @@
-﻿# TumorDetector
+﻿# 🧠 TumorDetector
 
 This application is running on Flask and Python --version = Python 3.9.13
 (There may be compatibility issues, any Python version 3.9 should work)
