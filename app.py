@@ -87,7 +87,7 @@ def prediction(filepath):
             return os.path.relpath(latest_file, 'static') 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5022, debug=True)  
+    app.run(host="0.0.0.0", port=5000, debug=True)  
 
 
 
