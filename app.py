@@ -1,8 +1,6 @@
 from flask import Flask, request, render_template, url_for, redirect
 import os
-import urllib.request
 from werkzeug.utils import secure_filename
-from PIL import Image
 import os
 import subprocess
 import glob
@@ -14,11 +12,10 @@ app = Flask(__name__)
 if not os.path.exists("./yolov5"):
     result = subprocess.run(["git", "clone", "https://github.com/ultralytics/yolov5"], capture_output=True, text=True)
     shutil.copy("./model/detect.py", "./yolov5/")
-    print(result.stdout)  # Print the output for debugging
 
 # App utils
-UPLOAD_FOLDER = 'static/uploads/'
-RESULT_FOLDER = 'static/predict/'
+UPLOAD_FOLDER = './static/uploads/'
+RESULT_FOLDER = './static/predict/'
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['RESULT_FOLDER'] = RESULT_FOLDER
@@ -41,6 +38,7 @@ def clear_old_predictions(directory):
 @app.route("/")
 def index():
     clear_old_predictions(app.config['RESULT_FOLDER'])
+    clear_old_predictions(app.config['UPLOAD_FOLDER'])
     return render_template("index.html", predicted=None)
 
 # file upload call
@@ -67,7 +65,7 @@ def prediction(filepath):
         "--img", "640",
         "--conf", "0.60",
         "--source", filepath,
-        "--project", "static/predict",
+        "--project", "./static/predict",
         "--name", "results",
         "--exist-ok"
     ]
@@ -78,24 +76,18 @@ def prediction(filepath):
     # Update result image
     results_dir = os.path.join(app.config['RESULT_FOLDER'])
 
-    # Ensure the directory exists and contains files
+    # Check if it has the directory for predictions
     if os.path.exists(results_dir) and os.listdir(results_dir):
-        # Get the latest file based on modification time
         latest_file = max(
             [os.path.join(results_dir, f) for f in os.listdir(results_dir)],
             key=os.path.getmtime
         )
         # Ensure the latest file exists
         if os.path.exists(latest_file):
-            return os.path.relpath(latest_file, 'static')  # Return the file path relative to the 'static' folder
+            return os.path.relpath(latest_file, 'static') 
 
-# display prediction
-@app.route("/display/<path:predicted>")
-def display_image(predicted):
-    # Ensure path joins with static folder
-    return redirect(url_for('static', filename=f"static/predict/{predicted}"))
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5010, debug=True)  # For debugging
+    app.run(host="0.0.0.0", port=5022, debug=True)  
 
 
 

@@ -159,7 +159,7 @@ def run(
 
     # Directories
     # Directories
-    save_dir = Path("static/predict")  # static directory for results
+    save_dir = Path("./static/predict")  # static directory for results
     (save_dir / "labels" if save_txt else save_dir).mkdir(parents=True, exist_ok=True)  # make dir
 
 
