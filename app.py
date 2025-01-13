@@ -9,6 +9,11 @@ import glob
 
 app = Flask(__name__)
 
+# Check if the folder exists
+if not os.path.exists("./yolov5"):
+    result = subprocess.run(["git", "clone", "https://github.com/ultralytics/yolov5"], capture_output=True, text=True)
+    print(result.stdout)  # Print the output for debugging
+
 # App utils
 UPLOAD_FOLDER = 'static/uploads/'
 RESULT_FOLDER = 'static/predict/'
@@ -29,7 +34,7 @@ def clear_old_predictions(directory):
     files = glob.glob(directory + "/*")
     for f in files:
         os.remove(f)
-        
+
 # main page
 @app.route("/")
 def index():
