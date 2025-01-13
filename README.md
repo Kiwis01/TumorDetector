@@ -4,7 +4,7 @@ This application is running on Flask and Python --version = Python 3.12.7
 (There should not be compatibility issues)
 
 # Example 
-[![Watch the video](https://raw.githubusercontent.com/Kiwis01/TumorDetector/tumor-prediction/)](https://raw.githubusercontent.com/Kiwis-1/TumorDetector/tumor-prediction/tumor-flask-example.mp4)
+[![Watch the video](https://i.sstatic.net/Vp2cE.png)](https://youtu.be/vt5fpE0bzSY)
 
 # Setup
 Please make sure to install the required dependencies 
